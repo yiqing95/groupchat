@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Group chat</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="https://cdn.bootcss.com/socket.io/2.0.3/socket.io.js"></script>
+    <script>
+    $(function(){
+        console.log("jquery is on");
+        var socket = io.connect();
+        var name = prompt("please enter your name: ")
+        
+        socket.emit("got_new_user",
+    {name:name});
+    // 显示出来
+    $("#container").css('display','block');
+
+    socket.on('added_user',function(data){
+        var $chat = $("#chat");
+        for(var i=0 ; i<data.messages.length ; i++){
+           $chat.append('<p>'+data.messages[i]+'</p>');
+        }
+    });
+
+    var $chatBox = $("#chat");
+     socket.on('update_chat',function(data){
+        console.log(data);
+        $chatBox.append('<p>'+data.message + "<p/>");
+    });
+
+    // 提交消息
+    $("form").on("submit",function(e){
+        e.preventDefault();
+        var $messageInput = $("#message");
+
+        if($.trim($messageInput.val()) == ''){
+            alert("输入一些内容再提交吧！");
+            return false ;
+        }
+        
+       // var formData = $(this).serializeArray();
+       // console.log(formData);
+       var formMessage = name + " say: "+$("#message").val();
+    
+        console.log(formMessage);
+
+
+        socket.emit("new_message",{
+            message: formMessage
+        });
+
+        // 清空发送框
+        $("#message").val('');
+
+        return false ;
+    });
+  
+    });
+    </script>
+
+</head>
+<body>
+    <div id="container">
+        <h1>Conversation board</h1>
+
+        <form action="">
+            <input type="text" id="message" name="message"
+            placeholder="enter msg here">
+            <input type="submit" name="send">
+        </form>
+
+        <div id="chat">
+
+        </div>
+
+       
+    </div>
+</body>
+</html>

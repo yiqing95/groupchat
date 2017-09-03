@@ -1,0 +1,9 @@
+#container{
+    display: none
+}
+
+#chat{
+    border: 1px solid green;
+    padding: 40px;
+    margin: 50px;
+}
