@@ -24,8 +24,6 @@
 </head>
 
 <body>
-
-
     <div class="container-fluid" id="app">
 
         {{ deleteLatter }}
@@ -65,24 +63,30 @@
                         <h4 class="card-title">Secondary card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
-                        <ul class="list-unstyled">
+                        <ul class="list-unstyled" style="max-height:450px;overflow:auto;" v-on:DOMNodeInsertedIntoDocument="chatPanelScrollToBottom" >
                             <li v-for="message in messages" class="media">
+
                                 <div v-if="message.type == 'info' " class="info">
-                                    {{ message.msg }}
-                                </div>
-
-                                <div v-if="message.type == 'chat' ">
-
-                                    <img class="d-flex mr-3" src="..." alt="Generic placeholder image">
-                                    <div class="media-body">
-                                        <h5 class="mt-0 mb-1">
-                                            {{ message.user }} {{ message.timestamp }}
-                                        </h5>
-
-                                        {{ message.text }}
+                                    <i class="material-icons">notifications</i>
+                                    <div class="d-inline-block bg-warning">
+                                        {{ message.msg }}
                                     </div>
+
+                                    <i class="material-icons">event_note</i>
+
                                 </div>
 
+
+                                <div v-if="message.type == 'chat' " class="chat">
+
+                                    <i class="material-icons">chat</i>
+                                    <span class="bg-primary">{{ message.user }} </span>
+                                     
+                                     {{ message.timestamp }} 
+                                     <div class="d-inline bg-success"> {{ message.text   }}</div>
+                                    
+
+                                </div>
 
                             </li>
 
@@ -223,6 +227,9 @@
                             socket.emit('stopped typing', socket.id);
                         }
                     }
+                },
+                chatPanelScrollToBottom: function(){
+                     alert("弄啥赖！");
                 }
             }
         });
