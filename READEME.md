@@ -1,17 +1,28 @@
 快速开始
 --
 
-## 安装依赖
+## 安装依赖（项目根目录下）
 
 ```CLI
     npm install
 ```
 
-## 启动server
+## 启动server（项目根目录下）
 
 ```CLI
     node server.js  // 开发环境也可以使用 [nodemo](https://github.com/remy/nodemon) 工具替代node  
+
+    // 或者使用 npm start 命令
 ```     
+
+
+## 两个页面
+
+-  localhost:8000 
+    是默认的 简单版的 
+-  http://localhost:8000/vue
+    是vue版本的实现 
+    该页面使用  vue+bootstrap4.x    
 
 
 ## 参考&&资料
