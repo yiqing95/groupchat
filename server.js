@@ -103,7 +103,7 @@ io.sockets.on('connection',function(socket){
     // 相对当前socket的 次级全局变量
     var user ; 
 
-    // socket 本身 可以作为变量寄宿根  
+    // socket 本身 可以作为变量寄宿根(js 中对象可以随即添加成员属性的！ 这样就可以形成关联 socket<=>username)  :  socket.anyVarName = anyValue 
    
     socket.on("got_new_user",function(data){
         console.log(data) ;

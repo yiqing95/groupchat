@@ -63,7 +63,7 @@
                         <h4 class="card-title">Secondary card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 
-                        <ul class="list-unstyled" style="max-height:450px;overflow:auto;" v-on:DOMNodeInsertedIntoDocument="chatPanelScrollToBottom" >
+                        <ul class="list-unstyled" style="max-height:450px;overflow:auto;" v-on:DOMNodeInsertedIntoDocument="chatPanelScrollToBottom">
                             <li v-for="message in messages" class="media">
 
                                 <div v-if="message.type == 'info' " class="info">
@@ -80,11 +80,9 @@
                                 <div v-if="message.type == 'chat' " class="chat">
 
                                     <i class="material-icons">chat</i>
-                                    <span class="bg-primary">{{ message.user }} </span>
-                                     
-                                     {{ message.timestamp }} 
-                                     <div class="d-inline bg-success"> {{ message.text   }}</div>
-                                    
+                                    <span class="bg-primary">{{ message.user }} </span> {{ message.timestamp }}
+                                    <div class="d-inline bg-success"> {{ message.text }}</div>
+
 
                                 </div>
 
@@ -228,8 +226,13 @@
                         }
                     }
                 },
-                chatPanelScrollToBottom: function(){
-                     alert("弄啥赖！");
+                chatPanelScrollToBottom: function () {
+                    alert("弄啥赖！");
+
+                    function scrollToBottom(id) {
+                        var div = document.getElementById(id);
+                        div.scrollTop = div.scrollHeight - div.clientHeight;
+                    }
                 }
             }
         });

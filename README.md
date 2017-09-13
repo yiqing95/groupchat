@@ -27,9 +27,12 @@ simple chat program
 
 
 ## 参考&&资料
+
 - 关于私聊功能 可以参考[chat-server.js](https://github.com/yiqing95/nodejs-chat-complete/blob/master/lib/chat-server.js)
 上面的在youtube上是有视频的：[Smitha Milli
 ](http://youtu.be/c01OHDUpDMU)
+
+- 关于聊天室room的功能参考：[Make real time web apps for use in a game or chat room with socket.io!](https://github.com/UFSEC/socketIOTutorial/)
 
 - vscode 格式化代码 [How do you format code in Visual Studio Code (VSCode)](https://stackoverflow.com/questions/29973357/how-do-you-format-code-in-visual-studio-code-vscode)
 ~~~
